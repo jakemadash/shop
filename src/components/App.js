@@ -7,12 +7,13 @@ const App = () => {
   useEffect(() => {
     const fetchProductData = async () => {
       const response = await fetch("https://fakestoreapi.com/products");
-      const data = await response.json();
+      let data = await response.json();
       console.log(data)
+      data = data.filter((product => product.category !== 'jewelery'))
       setProducts([data.map((product, index) => {
         return (
           <div key={index}>
-            <ProductCard image={product.image} title={product.title} />
+            <ProductCard item={product}/>
           </div>
         );
       })])
