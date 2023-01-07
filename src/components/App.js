@@ -30,7 +30,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Home</h1>
-      <div>
+      <div className='product-gallery'>
         {products}
       </div>
     </div>

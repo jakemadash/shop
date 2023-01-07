@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import "../style.css";
 
-const ProductCard = ({image, title}) => {
+const ProductCard = ({ image, title }) => {
   return (
-    <div>
+    <div className="product-card">
       <img src={image} alt={title}></img>
     </div>
   );

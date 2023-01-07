@@ -1,0 +1,16 @@
+.product-card {
+  height: 40vh;
+  border-style: solid;
+}
+
+img {
+    height: 30vh;
+    width: auto;
+}
+
+.product-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-self: center;
+    width: 70vh;
+}
