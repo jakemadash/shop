@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./components/App";
 import Cart from "./components/Cart";
 
-const RouteSwitch = () => {
+const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,4 +13,4 @@ const RouteSwitch = () => {
   );
 };
 
-export default RouteSwitch;
+export default Router;
