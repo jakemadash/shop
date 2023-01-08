@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../style.css";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, setCount, count }) => {
 
   const usd = new Intl.NumberFormat("en-US", {
     style: "currency",

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
+import Cart from './Cart'
 
 const App = () => {
   const [products, setProducts] = useState()
+  const [cartCount, setCartCount] = useState(0)
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -22,16 +24,16 @@ const App = () => {
     fetchProductData();
   }, []);
 
-  // async function fetchProductData() {
-  //   const response = await fetch("https://fakestoreapi.com/products");
-  //   const data = await response.json();
-  //   setProducts(data);
-  // }
+  const addToCart =(e) => {
+    console.log(e)
+    if (e.target.localName === 'button') setCartCount(cartCount + 1)
+  }
 
   return (
     <div className="App">
       <h1>Home</h1>
-      <div className='product-gallery'>
+      <div><Cart count={cartCount}/></div>
+      <div className='product-gallery' onClick={addToCart}>
         {products}
       </div>
     </div>
