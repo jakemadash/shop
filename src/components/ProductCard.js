@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../style.css";
 
-const ProductCard = ({ item, setCount, count }) => {
+const ProductCard = ({ item, updateCart }) => {
+  const [quantity, setQuantity] = useState(1);
 
   const usd = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -9,13 +10,26 @@ const ProductCard = ({ item, setCount, count }) => {
     minimumFractionDigits: 2,
   });
 
+ const handleChange = (e) => {
+  setQuantity(e.target.value)
+ }
+
+ const handleClick = () => {
+  updateCart(item.title, quantity)
+ }
+
   return (
     <div className="product-card">
       <img src={item.image} alt={item.title}></img>
       <div>{item.title}</div>
       <div>{usd.format(item.price)}</div>
-      <input type='number'></input>
-      <button>Add to cart</button>
+      <input
+        type="number"
+        defaultValue={1}
+        min={1}
+        onChange={handleChange}
+      ></input>
+      <button onClick={handleClick}>Add to cart</button>
     </div>
   );
 };

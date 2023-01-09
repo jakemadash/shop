@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "../style.css";
 
-const Cart = ({count}) => {
-  let quantity = ''
-  if (count > 0) quantity = count
-  return (
-    <div className="App">
-      <h1>Cart {quantity}</h1>
-    </div>
-  );
+const Cart = ({items}) => {
+return(
+  [items.map((item, index) => {
+    return(
+      <div key={index}>
+        {item.product} {item.quantity}
+      </div>
+    )
+  })]
+)
 }
 
 export default Cart;

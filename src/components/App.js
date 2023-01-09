@@ -1,10 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
+import CartIcon from './CartIcon'
 import Cart from './Cart'
 
 const App = () => {
   const [products, setProducts] = useState()
   const [cartCount, setCartCount] = useState(0)
+  const [cartProducts, setCartProducts] = useState([])
+
+  const addToCart = (product, quantity) => {
+    console.log(quantity)
+    setCartProducts(cartProducts => [...cartProducts, {product, quantity}])
+    console.log(cartProducts)
+  }
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -15,7 +24,7 @@ const App = () => {
       setProducts([data.map((product, index) => {
         return (
           <div key={index}>
-            <ProductCard item={product}/>
+            <ProductCard item={product} updateCart={addToCart}/>
           </div>
         );
       })])
@@ -24,16 +33,13 @@ const App = () => {
     fetchProductData();
   }, []);
 
-  const addToCart =(e) => {
-    console.log(e)
-    if (e.target.localName === 'button') setCartCount(cartCount + 1)
-  }
 
   return (
     <div className="App">
       <h1>Home</h1>
-      <div><Cart count={cartCount}/></div>
-      <div className='product-gallery' onClick={addToCart}>
+      <CartIcon count={cartCount} />
+      <Cart items={cartProducts}/>
+      <div className='product-gallery' >
         {products}
       </div>
     </div>
