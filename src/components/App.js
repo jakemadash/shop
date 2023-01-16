@@ -45,11 +45,6 @@ const App = () => {
     }
   }, [cartProducts]);
 
-  const updateState = (newState) => {
-    ref.current = newState;
-    setCartProducts(newState);
-  };
-
   const addToCart = (title, quantity) => {
     let productInCart = "";
     let updatedProducts = cartProducts.map((product) => {
@@ -65,7 +60,7 @@ const App = () => {
         ...updatedProducts,
         { title, quantity },
       ];
-    updateState(updatedProducts);
+    setCartProducts(updatedProducts);
   };
 
   return (
