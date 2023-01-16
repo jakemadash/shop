@@ -11,7 +11,7 @@ const ProductCard = ({ item, updateCart }) => {
   });
 
  const handleChange = (e) => {
-  setQuantity(e.target.value)
+  setQuantity(parseInt(e.target.value))
  }
 
  const handleClick = () => {
@@ -21,14 +21,16 @@ const ProductCard = ({ item, updateCart }) => {
   return (
     <div className="product-card">
       <img src={item.image} alt={item.title}></img>
-      <div>{item.title}</div>
-      <div>{usd.format(item.price)}</div>
-      <input
-        type="number"
-        defaultValue={1}
-        min={1}
-        onChange={handleChange}
-      ></input>
+      <div className="details">
+        <div>{item.title}</div>
+        <div>{usd.format(item.price)}</div>
+        <input
+          type="number"
+          defaultValue={1}
+          min={1}
+          onChange={handleChange}
+        ></input>
+      </div>
       <button onClick={handleClick}>Add to cart</button>
     </div>
   );

@@ -1,49 +1,81 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
-import CartIcon from './CartIcon'
-import Cart from './Cart'
+import CartIcon from "./CartIcon";
+import Cart from "./Cart";
 
 const App = () => {
-  const [products, setProducts] = useState()
-  const [cartCount, setCartCount] = useState(0)
-  const [cartProducts, setCartProducts] = useState([])
+  const [productData, setProductData] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+  const [cartProducts, setCartProducts] = useState([]);
+  const ref = useRef(false);
 
-  const addToCart = (product, quantity) => {
-    console.log(quantity)
-    setCartProducts(cartProducts => [...cartProducts, {product, quantity}])
-    console.log(cartProducts)
-  }
-
-  useEffect(() => {
-    const fetchProductData = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      let data = await response.json();
-      console.log(data)
-      data = data.filter((product => product.category !== 'jewelery'))
-      setProducts([data.map((product, index) => {
+  const fetchProductData = async () => {
+    const response = await fetch("https://fakestoreapi.com/products");
+    let data = await response.json();
+    console.log("wow");
+    data = data.filter((product) => product.category !== "jewelery");
+    setProductData(data);
+    setProducts([
+      data.map((product, index) => {
         return (
           <div key={index}>
-            <ProductCard item={product} updateCart={addToCart}/>
+            <ProductCard item={product} updateCart={addToCart} />
           </div>
         );
-      })])
-    };
+      }),
+    ]);
+  };
 
-    fetchProductData();
-  }, []);
+  useEffect(() => {
+    if (ref.current === false) {
+      fetchProductData();
+      ref.current = true;
+    } else {
+      setProducts([
+        productData.map((product, index) => {
+          return (
+            <div key={index}>
+              <ProductCard item={product} updateCart={addToCart} />
+            </div>
+          );
+        }),
+      ]);
+    }
+  }, [cartProducts]);
 
+  const updateState = (newState) => {
+    ref.current = newState;
+    setCartProducts(newState);
+  };
+
+  const addToCart = (title, quantity) => {
+    let productInCart = "";
+    let updatedProducts = cartProducts.map((product) => {
+      if (product.title === title) {
+        // product is already in cart, just change quantity
+        productInCart = true;
+        return { ...product, quantity: product.quantity + quantity };
+      } else return product;
+    });
+    if (!productInCart)
+      // add new product to cart
+      updatedProducts = (updatedProducts) => [
+        ...updatedProducts,
+        { title, quantity },
+      ];
+    updateState(updatedProducts);
+  };
 
   return (
     <div className="App">
       <h1>Home</h1>
       <CartIcon count={cartCount} />
-      <Cart items={cartProducts}/>
-      <div className='product-gallery' >
-        {products}
-      </div>
+      <Cart items={cartProducts} />
+      <div className="product-gallery">{products}</div>
     </div>
   );
-}
+};
 
 export default App;
