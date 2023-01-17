@@ -9,12 +9,12 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
+  const [orderTotal, setOrderTotal] = useState(0);
   const ref = useRef(false);
 
   const fetchProductData = async () => {
     const response = await fetch("https://fakestoreapi.com/products");
     let data = await response.json();
-    console.log("wow");
     data = data.filter((product) => product.category !== "jewelery");
     setProductData(data);
     setProducts([
@@ -45,7 +45,7 @@ const App = () => {
     }
   }, [cartProducts]);
 
-  const addToCart = (title, quantity) => {
+  const addToCart = (title, price, image, quantity) => {
     let productInCart = "";
     let updatedProducts = cartProducts.map((product) => {
       if (product.title === title) {
@@ -58,16 +58,18 @@ const App = () => {
       // add new product to cart
       updatedProducts = (updatedProducts) => [
         ...updatedProducts,
-        { title, quantity },
+        { title, price, image, quantity },
       ];
     setCartProducts(updatedProducts);
+    setCartCount(cartCount + quantity);
+    setOrderTotal(orderTotal + (price * quantity))
   };
 
   return (
     <div className="App">
       <h1>Home</h1>
       <CartIcon count={cartCount} />
-      <Cart items={cartProducts} />
+      <Cart items={cartProducts} total={orderTotal} />
       <div className="product-gallery">{products}</div>
     </div>
   );

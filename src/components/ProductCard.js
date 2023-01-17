@@ -15,7 +15,7 @@ const ProductCard = ({ item, updateCart }) => {
  }
 
  const handleClick = () => {
-  updateCart(item.title, quantity)
+  updateCart(item.title, item.price, item.image, quantity)
  }
 
   return (
