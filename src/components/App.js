@@ -70,6 +70,7 @@ const App = () => {
       <h1>Home</h1>
       <CartIcon count={cartCount} />
       <Cart items={cartProducts} total={orderTotal} />
+      <nav></nav>
       <div className="product-gallery">{products}</div>
     </div>
   );
