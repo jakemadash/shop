@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 import CartIcon from "./CartIcon";
 import Cart from "./Cart";
+import ProductsMenu from "./ProductsMenu";
 
 const App = () => {
   const [productData, setProductData] = useState([]);
@@ -62,7 +63,7 @@ const App = () => {
       ];
     setCartProducts(updatedProducts);
     setCartCount(cartCount + quantity);
-    setOrderTotal(orderTotal + (price * quantity))
+    setOrderTotal(orderTotal + price * quantity);
   };
 
   return (
@@ -70,8 +71,10 @@ const App = () => {
       <h1>Home</h1>
       <CartIcon count={cartCount} />
       <Cart items={cartProducts} total={orderTotal} />
-      <nav></nav>
-      <div className="product-gallery">{products}</div>
+      <div className="products">
+        <ProductsMenu productData={productData} setProductData={setProductData} />
+        <div className="product-gallery">{products}</div>
+      </div>
     </div>
   );
 };

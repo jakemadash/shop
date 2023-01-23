@@ -1,3 +1,25 @@
+button {
+  width: 100%;
+}
+
+img {
+  height: 30vh;
+  width: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul:hover {
+  cursor: pointer;
+}
+
+.products {
+  display: flex;
+}
+
 .product-card {
   height: 45vh;
   width: 50vh;
@@ -9,17 +31,8 @@
   gap: 15px;
 }
 
-button {
-  width: 100%;
-}
-
 .details {
   align-self: flex-start;
-}
-
-img {
-    height: 30vh;
-    width: auto;
 }
 
 .product-gallery {
