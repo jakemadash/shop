@@ -6,7 +6,8 @@ import Cart from "./Cart";
 import ProductsMenu from "./ProductsMenu";
 
 const App = () => {
-  const [productData, setProductData] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
   const [products, setProducts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [cartProducts, setCartProducts] = useState([]);
@@ -17,7 +18,8 @@ const App = () => {
     const response = await fetch("https://fakestoreapi.com/products");
     let data = await response.json();
     data = data.filter((product) => product.category !== "jewelery");
-    setProductData(data);
+    setAllProducts(data);
+    setSelectedProducts(data);
     setProducts([
       data.map((product, index) => {
         return (
@@ -35,7 +37,7 @@ const App = () => {
       ref.current = true;
     } else {
       setProducts([
-        productData.map((product, index) => {
+        selectedProducts.map((product, index) => {
           return (
             <div key={index}>
               <ProductCard item={product} updateCart={addToCart} />
@@ -44,7 +46,7 @@ const App = () => {
         }),
       ]);
     }
-  }, [cartProducts]);
+  }, [cartProducts, selectedProducts]);
 
   const addToCart = (title, price, image, quantity) => {
     let productInCart = "";
@@ -72,7 +74,10 @@ const App = () => {
       <CartIcon count={cartCount} />
       <Cart items={cartProducts} total={orderTotal} />
       <div className="products">
-        <ProductsMenu productData={productData} setProductData={setProductData} />
+        <ProductsMenu
+          productData={allProducts}
+          setSelectedProducts={setSelectedProducts}
+        />
         <div className="product-gallery">{products}</div>
       </div>
     </div>
