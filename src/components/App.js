@@ -70,8 +70,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Home</h1>
-      <CartIcon count={cartCount} />
+    <div className="header">
+      <a href="" className="logo">Pop Shop</a>
+        <nav className="main-menu">
+          <a href="">Home</a>
+          <a href="">Products</a>
+          <CartIcon count={cartCount} />
+        </nav>
+    </div>
       <Cart items={cartProducts} total={orderTotal} />
       <div className="products">
         <ProductsMenu

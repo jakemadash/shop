@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+}
+
 button {
   width: 100%;
 }
@@ -10,25 +14,70 @@ img {
 ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 ul:hover {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.cart-icon > img {
+  height: 2rem
+}
+
+:root {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(249, 249, 249);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  background-color: rgb(93, 73, 128);
+}
+
+.header > * {
+  padding: 20px 80px;
+}
+
+.main-menu {
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-between;
+  align-self: flex-end;
+  gap: 4rem;
+}
+
+.logo {
+  font-size: 4rem;
+}
+
 .products {
   display: flex;
+  padding: 2rem;
 }
 
 .product-card {
   height: 45vh;
   width: 50vh;
-  border-style: solid;
   padding: 10px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .details {
@@ -36,8 +85,8 @@ ul:hover {
 }
 
 .product-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    width: 70vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 70vh;
 }
