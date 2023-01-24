@@ -71,7 +71,7 @@ const App = () => {
   return (
     <div className="App">
     <div className="header">
-      <a href="" className="logo">Pop Shop</a>
+      <a href="" className="logo">Top Shop</a>
         <nav className="main-menu">
           <a href="">Home</a>
           <a href="">Products</a>
