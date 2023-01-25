@@ -15,8 +15,12 @@ ul {
   list-style: none;
   padding: 0;
   display: flex;
+  position: sticky;
+  top: 1000;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: 2rem;
+  font-size: 1.5rem;
 }
 
 ul:hover {
@@ -51,6 +55,8 @@ a:not(.logo):hover, .cart-icon:hover {
 .header {
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
   width: 100vw;
   max-width: 100%;
   display: flex;
@@ -93,7 +99,8 @@ a:not(.logo):hover, .cart-icon:hover {
 
 .products {
   display: flex;
-  padding: 2rem;
+  gap: 3rem;
+  margin: 2rem;
 }
 
 .product-card {
