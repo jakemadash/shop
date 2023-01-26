@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
+import Header from "./Header";
 import ProductCard from "./ProductCard";
-import CartIcon from "./CartIcon";
 import Cart from "./Cart";
 import ProductsMenu from "./ProductsMenu";
 
@@ -70,14 +70,7 @@ const App = () => {
 
   return (
     <div className="App">
-    <div className="header">
-      <a href="" className="logo">Top Shop</a>
-        <nav className="main-menu">
-          <a href="">Home</a>
-          <a href="">Products</a>
-          <CartIcon count={cartCount} />
-        </nav>
-    </div>
+    <Header cartCount={cartCount}/>
       <Cart items={cartProducts} total={orderTotal} />
       <div className="products">
         <ProductsMenu
