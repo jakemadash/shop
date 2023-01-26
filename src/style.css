@@ -122,6 +122,30 @@ button:hover {
   font-weight: 700;
 }
 
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vh;
+  padding: 2rem;
+  background-color: white;
+  display: ;
+}
+
+.cart-item {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.cart-image {
+  height: 15vh;
+  width: auto;
+}
+
 .product-card {
   height: 55vh;
   width: 50vh;

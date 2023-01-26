@@ -71,7 +71,7 @@ const App = () => {
   return (
     <div className="App">
     <Header cartCount={cartCount}/>
-      <Cart items={cartProducts} total={orderTotal} />
+      <Cart items={cartProducts} total={orderTotal} updateCart={addToCart}/>
       <div className="products">
         <ProductsMenu
           productData={allProducts}
