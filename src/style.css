@@ -5,6 +5,7 @@
 button {
   width: 100%;
   height: 2.5rem;
+  border: none;
   background-color: rgb(64, 65, 124);
   font-size: 1.2rem;
   font-weight: 700;
@@ -27,6 +28,10 @@ img {
   width: auto;
 }
 
+h1 {
+  text-align: center;
+}
+
 ul {
   list-style: none;
   padding: 2rem 1rem;
@@ -36,6 +41,10 @@ ul {
   justify-content: space-evenly;
   gap: 2rem;
   font-size: 1.5rem;
+}
+
+ul.disabled {
+  z-index: -1;
 }
 
 li {
@@ -76,6 +85,23 @@ button:hover {
   font-family: "Roboto", sans-serif;
   background-color: rgb(249, 249, 249);
   box-sizing: border-box;
+}
+
+.overlay {
+  position: fixed; 
+  display: none; 
+  width: 100%; 
+  height: 100%; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); 
+  z-index: 1; 
+}
+
+.visible {
+  display: block;
 }
 
 .header {
@@ -125,25 +151,64 @@ button:hover {
 .cart {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  align-content: center;
   position: fixed;
   top: 0;
   right: 0;
+  transform: translate(40vw);
+  transition: transform 0.5s;
+  z-index: 2;
   width: 50vh;
+  height: 100%;
   padding: 2rem;
   background-color: white;
-  display: ;
+}
+
+.slide-in {
+  transform: translate(0);
+}
+
+.cart-items-container {
+  max-height: 60vh;
+  margin: 2rem 0;
+  overflow: auto;
 }
 
 .cart-item {
-  display: flex;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: flex-start;
   padding: 2rem 0;
 }
 
 .cart-image {
-  height: 15vh;
-  width: auto;
+  height: 7rem;
+  width: 5.28rem;
+}
+
+.cart-item-details > * {
+  margin: 0.2rem;
+}
+
+.total {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.close-button {
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+  background-color: rgb(222, 187, 50);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.close-button:hover {
+  background-color: rgb(235, 199, 56);
 }
 
 .product-card {

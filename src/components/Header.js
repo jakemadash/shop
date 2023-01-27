@@ -5,7 +5,7 @@ const Header = ({ cartCount }) => {
   return (
     <div className="header">
       <a href="" className="logo">
-        Top Shop
+        Pop Shop
       </a>
       <nav className="main-menu">
         <a href="">Home</a>

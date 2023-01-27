@@ -52,7 +52,7 @@ const App = () => {
     let productInCart = "";
     let updatedProducts = cartProducts.map((product) => {
       if (product.title === title) {
-        // product is already in cart, just change quantity
+        // product in cart, just change quantity
         productInCart = true;
         return { ...product, quantity: product.quantity + quantity };
       } else return product;
@@ -68,10 +68,25 @@ const App = () => {
     setOrderTotal(orderTotal + price * quantity);
   };
 
+  const deleteFromCart = (title, price) => {
+    const updatedProducts = cartProducts.filter(
+      (product) => product.title !== title
+    );
+    console.log(updatedProducts)
+    setCartProducts(updatedProducts);
+    setCartCount(cartCount - 1);
+    setOrderTotal(orderTotal - price);
+  };
+
   return (
     <div className="App">
-    <Header cartCount={cartCount}/>
-      <Cart items={cartProducts} total={orderTotal} updateCart={addToCart}/>
+      <Header cartCount={cartCount} />
+      <Cart
+        items={cartProducts}
+        total={orderTotal}
+        addToCart={addToCart}
+        deleteFromCart={deleteFromCart}
+      />
       <div className="products">
         <ProductsMenu
           productData={allProducts}

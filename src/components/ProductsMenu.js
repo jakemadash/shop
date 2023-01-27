@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 
-const ProductsMenu = ({ productData, setSelectedProducts}) => {
+const ProductsMenu = ({ productData, setSelectedProducts }) => {
   const handleClick = (e) => {
     if (e.target.textContent === "All") setSelectedProducts(productData);
     else {
       const filteredData = productData.filter(
         (product) => product.category === e.target.textContent.toLowerCase()
       );
-      console.log(filteredData)
+      console.log(filteredData);
       setSelectedProducts(filteredData);
     }
   };
