@@ -4,12 +4,12 @@ import CartIcon from "./CartIcon";
 const Header = ({ cartCount }) => {
   return (
     <div className="header">
-      <a href="" className="logo">
+      <a href="/" className="logo">
         Pop Shop
       </a>
       <nav className="main-menu">
-        <a href="">Home</a>
-        <a href="">Products</a>
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
         <CartIcon count={cartCount} />
       </nav>
     </div>
