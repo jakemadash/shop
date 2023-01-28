@@ -13,7 +13,7 @@ const ProductsMenu = ({ productData, setSelectedProducts }) => {
   };
 
   return (
-    <nav>
+    <nav className="nav">
       <ul onClick={(e) => handleClick(e)}>
         <li>All</li>
         <li>Electronics</li>

@@ -5,14 +5,12 @@ const CartIcon = ({ count }) => {
   const cartView = () => {
     document.querySelector(".cart").classList.toggle("slide-in");
     document.querySelector(".overlay").classList.toggle("visible");
-    document.querySelector("ul").classList.toggle("disabled");
   };
 
   let quantity = "  ";
   if (count > 0) quantity = count;
   return (
-    <div className="menu-cart" onClick={cartView}>
-      <div className="overlay"></div>
+    <div className="menu-cart menu-item" onClick={cartView}>
       <span className="quantity">{quantity}</span>
       <img src={Bag} alt="shopping bag" className="cart-icon"></img>
     </div>

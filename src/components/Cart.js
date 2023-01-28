@@ -22,7 +22,7 @@ const Cart = ({ items, total, addToCart, deleteFromCart }) => {
     minimumFractionDigits: 2,
   });
 
-  let orderTotal = "";
+  let orderTotal = "$0.00";
   if (total > 0) orderTotal = usd.format(total);
 
   return (
