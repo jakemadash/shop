@@ -1,8 +1,18 @@
 import React from "react";
-import Header from './Header'
 
 const Home = () => {
-  return <Header />;
+  return (
+    <div>
+      <div className="home">
+        <div className="logo" id="big">Pop Shop</div>
+        <div className="home-body">
+            <div className="best">BEST ONLINE STORE OF 2023</div>
+            <button className="shop"><a href="/products">Shop now</a></button>
+        </div>
+        <div className="vibe"></div>
+      </div>
+    </div>
+  );
 };
 
 export default Home;

@@ -65,10 +65,57 @@ a {
   transition: transform 0.2s;
 }
 
-a:not(.logo):hover,
-.cart-icon:hover {
+.main-menu > *:hover {
   transform: scale(1.05);
 }
+
+.home {
+  background: url("./images/home.jpg") center/cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#big {
+  font-size: 10rem;
+  padding-left: 9rem;
+}
+
+.home-body {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.best {
+  font-size: 4rem;
+  width: 15rem;
+  color: white;
+  font-style: italic;
+}
+
+.shop {
+  border-radius: 50px;
+  font-size: 2.5rem;
+  width: 20rem;
+  height: 4rem;
+  margin: 4rem 10rem;
+}
+
+.shop > a {
+  display: block;
+}
+
+/* .vibe {
+  color: white;
+  font-size: 8rem;
+  font-family: 'Fredoka One', cursive;
+  text-align: center;
+  padding-top: 1rem;
+} */
 
 .cart-icon {
   height: 2rem;
@@ -88,16 +135,16 @@ button:hover {
 }
 
 .overlay {
-  position: fixed; 
-  display: none; 
-  width: 100%; 
-  height: 100%; 
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5); 
-  z-index: 1; 
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .visible {
