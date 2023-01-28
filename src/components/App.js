@@ -4,8 +4,10 @@ import Header from "./Header";
 import ProductCard from "./ProductCard";
 import Cart from "./Cart";
 import ProductsMenu from "./ProductsMenu";
+import { RotatingLines } from "react-loader-spinner";
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -16,7 +18,15 @@ const App = () => {
 
   const fetchProductData = async () => {
     const response = await fetch("https://fakestoreapi.com/products");
+    if (!response.ok) {
+      setIsLoading(false);
+      const app = document.querySelector(".App");
+      app.textContent =
+        "An error occurred. Please refresh the page or try again later.";
+      return null;
+    }
     let data = await response.json();
+    setIsLoading(false);
     data = data.filter((product) => product.category !== "jewelery");
     setAllProducts(data);
     setSelectedProducts(data);
@@ -72,11 +82,26 @@ const App = () => {
     const updatedProducts = cartProducts.filter(
       (product) => product.title !== title
     );
-    console.log(updatedProducts)
+    console.log(updatedProducts);
     setCartProducts(updatedProducts);
     setCartCount(cartCount - 1);
     setOrderTotal(orderTotal - price);
   };
+
+  let productView = "";
+  if (isLoading)
+    productView = (
+      <div className="loading">
+        <RotatingLines
+          strokeColor="rgb(77, 78, 146)"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="96"
+          visible={true}
+        />
+      </div>
+    );
+  else productView = <div className="product-gallery">{products}</div>;
 
   return (
     <div className="App">
@@ -92,7 +117,7 @@ const App = () => {
           productData={allProducts}
           setSelectedProducts={setSelectedProducts}
         />
-        <div className="product-gallery">{products}</div>
+        {productView}
       </div>
     </div>
   );

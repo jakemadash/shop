@@ -3,11 +3,11 @@ import React from "react";
 const ProductsMenu = ({ productData, setSelectedProducts }) => {
   const handleClick = (e) => {
     if (e.target.textContent === "All") setSelectedProducts(productData);
-    else {
+    // make sure list item is clicked, not just parent ul element
+    else if (e.target.nodeName === "LI") {
       const filteredData = productData.filter(
         (product) => product.category === e.target.textContent.toLowerCase()
       );
-      console.log(filteredData);
       setSelectedProducts(filteredData);
     }
   };

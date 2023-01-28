@@ -232,8 +232,14 @@ button:hover {
   font-size: 1.3rem;
 }
 
+.loading {
+  text-align: center;
+  padding-top: 10rem;
+}
+
 .product-gallery {
   display: grid;
+  text-align: center;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
   width: 70vh;
