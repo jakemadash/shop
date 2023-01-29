@@ -8,7 +8,7 @@ const Header = ({ cartCount }) => {
   };
 
   return (
-    <div>
+    <div className="header-container">
       <header className="header nav">
         <a href="/" className="logo no-transition">
           Pop Shop
