@@ -43,10 +43,6 @@ ul {
   font-size: 1.5rem;
 }
 
-ul.disabled {
-  z-index: -1;
-}
-
 li {
   width: 234px;
 }
@@ -65,13 +61,15 @@ a {
   transition: transform 0.2s;
 }
 
-.main-menu > *:hover {
+a:not(.no-transition):hover,
+.menu-cart:hover {
   transform: scale(1.05);
 }
 
 .home {
   background: url("./images/home.jpg") center/cover;
   width: 100%;
+  min-width: min-content;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -109,14 +107,6 @@ a {
   display: block;
 }
 
-/* .vibe {
-  color: white;
-  font-size: 8rem;
-  font-family: 'Fredoka One', cursive;
-  text-align: center;
-  padding-top: 1rem;
-} */
-
 .cart-icon {
   height: 2rem;
   filter: invert();
@@ -151,6 +141,10 @@ button:hover {
   display: block;
 }
 
+.header-container {
+  display: unset;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -158,7 +152,6 @@ button:hover {
   top: 0;
   width: 100vw;
   max-width: 100%;
-  display: flex;
   background-color: rgb(64, 65, 124);
 }
 
@@ -179,6 +172,7 @@ button:hover {
   justify-content: space-between;
   align-self: flex-end;
   gap: 6rem;
+  z-index: 0;
 }
 
 .main-menu > * {
@@ -202,8 +196,8 @@ button:hover {
   position: fixed;
   top: 0;
   right: 0;
-  transform: translate(40vw);
-  transition: transform 0.5s;
+  transform: translate(150vw);
+  transition: transform 0.3s;
   z-index: 2;
   width: 50vh;
   height: 100%;
@@ -237,6 +231,20 @@ button:hover {
   margin: 0.2rem;
 }
 
+.trash {
+  height: 1.9rem;
+}
+
+.trash:hover {
+  filter: brightness(0.9) invert(.5) sepia(.8) hue-rotate(295deg) saturate(200%);;
+  cursor: pointer;
+}
+
+.cart-item-controls {
+  display: flex;
+  gap: 2rem;
+}
+
 .total {
   font-size: 1.4rem;
   font-weight: 700;
@@ -267,7 +275,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .title {
@@ -292,4 +300,111 @@ button:hover {
   width: 70vh;
   margin-left: 250px;
   padding: 2rem 0;
+}
+
+@media (orientation: portrait) and (max-width: 550px) {
+  :root {
+    font-size: 0.5rem;
+  }
+}
+@media (orientation: portrait) {
+  .shop {
+    margin: 3rem;
+  }
+
+  .best {
+    margin-left: 1rem;
+  }
+
+  .product-gallery {
+    grid-template-columns: 1fr;
+    margin: 0 2rem;
+    width: auto;
+  }
+
+  .header > * {
+    margin: 10px;
+    font-size: 3rem;
+  }
+
+  .cart-icon {
+    height: 3rem;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .main-menu {
+    align-self: center;
+  }
+
+  .quantity {
+    font-size: 2rem;
+  }
+
+  .header > .logo {
+    font-size: 6rem;
+    text-align: center;
+  }
+
+  .cart h1 {
+    font-size: 4rem;
+  }
+
+  .cart > * {
+    font-size: 2.5rem;
+  }
+
+  .cart-items-container {
+    font-size: 4rem;
+  }
+
+  .cart-item {
+    padding: 4rem;
+    gap: 2rem;
+  }
+
+  .cart-item-details > * {
+    font-size: 2rem;
+  }
+
+  .cart-image {
+    height: 15rem;
+    width: 12rem;
+  }
+
+  .products {
+    display: flex;
+    flex-direction: column;
+  }
+
+  ul {
+    font-size: 2.5rem;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: static;
+  }
+
+  li {
+    width: auto;
+  }
+
+  .product-card {
+    width: 85vw;
+    height: 50vh;
+    margin-right: 0;
+  }
+
+  .product-card > * {
+    font-size: 2rem;
+  }
+
+  img {
+    height: 25vh;
+  }
+
+  button, .close-button {
+    height: 4rem;
+  }
 }

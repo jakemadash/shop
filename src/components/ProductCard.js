@@ -11,7 +11,9 @@ const ProductCard = ({ item, updateCart }) => {
   });
 
   const handleChange = (e) => {
-    setQuantity(parseInt(e.target.value));
+    console.log(e.target.value)
+    if (e.target.value === '') setQuantity(null)
+    else setQuantity(parseInt(e.target.value));
   };
 
   const handleClick = () => {

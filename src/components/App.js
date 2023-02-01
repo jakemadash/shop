@@ -60,14 +60,17 @@ const App = () => {
 
   const addToCart = (title, price, image, quantity) => {
     let productInCart = "";
+    console.log(quantity)
     let updatedProducts = cartProducts.map((product) => {
       if (product.title === title) {
+        if (isNaN(quantity)) console.log('ok');
         // product in cart, just change quantity
         productInCart = true;
+        console.log(quantity)
         return { ...product, quantity: product.quantity + quantity };
       } else return product;
     });
-    if (!productInCart)
+    if (!productInCart && quantity)
       // add new product to cart
       updatedProducts = (updatedProducts) => [
         ...updatedProducts,
@@ -78,14 +81,13 @@ const App = () => {
     setOrderTotal(orderTotal + price * quantity);
   };
 
-  const deleteFromCart = (title, price) => {
+  const deleteFromCart = (title, price, quantity) => {
     const updatedProducts = cartProducts.filter(
       (product) => product.title !== title
     );
-    console.log(updatedProducts);
     setCartProducts(updatedProducts);
-    setCartCount(cartCount - 1);
-    setOrderTotal(orderTotal - price);
+    setCartCount(cartCount - quantity);
+    setOrderTotal(orderTotal - (price * quantity));
   };
 
   let productView = "";

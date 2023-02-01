@@ -1,5 +1,5 @@
 import React from "react";
-import "../style.css";
+import Trash from "../images/trash.svg";
 
 const Cart = ({ items, total, addToCart, deleteFromCart }) => {
   const closeCart = () => {
@@ -9,8 +9,17 @@ const Cart = ({ items, total, addToCart, deleteFromCart }) => {
   };
 
   const handleChange = (e, item) => {
-    if (parseInt(e.target.value) === 0) deleteFromCart(item.title, item.price);
+    // if (isNaN(e.target.value) || e.target.value === '') {
+    //   console.log(e.target.value);
+    //   addToCart(item.title, item.price, item.image, 0);
+    // }
+    console.log(e)
+    e.preventDefault()
+    if (parseInt(e.target.value) === 0 || e.target.className === "trash")
+      deleteFromCart(item.title, item.price, item.quantity);
     else {
+      console.log(e.target.value === '');
+      console.log(e.target.value)
       const quantityChange = parseInt(e.target.value) - item.quantity;
       addToCart(item.title, item.price, item.image, quantityChange);
     }
@@ -40,11 +49,20 @@ const Cart = ({ items, total, addToCart, deleteFromCart }) => {
               <div className="cart-item-details">
                 <div className="title">{item.title}</div>
                 <div className="price">{usd.format(item.price)}</div>
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) => handleChange(e, item)}
-                ></input>
+                <div className="cart-item-controls">
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    onChange={(e) => handleChange(e, item)}
+                    onKeyDown={(e) => e.preventDefault()}
+                  ></input>
+                  <img
+                    src={Trash}
+                    alt="trash"
+                    className="trash"
+                    onClick={(e) => handleChange(e, item)}
+                  ></img>
+                </div>
               </div>
             </div>
           );
