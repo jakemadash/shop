@@ -68,7 +68,7 @@ a:not(.no-transition):hover,
 }
 
 .home {
-  background: url("./images/home.jpg") center/cover;
+  background: url("./images/home.webp") center/cover;
   width: 100%;
   min-width: min-content;
   min-height: 100vh;
