@@ -2,7 +2,7 @@ import React from "react";
 import CartIcon from "./CartIcon";
 
 const Header = ({ cartCount }) => {
-  const cartView = () => {
+  const hideCart = () => {
     document.querySelector(".cart").classList.toggle("slide-in");
     document.querySelector(".overlay").classList.toggle("visible");
   };
@@ -19,7 +19,7 @@ const Header = ({ cartCount }) => {
           <CartIcon count={cartCount} />
         </nav>
       </header>
-      <div className="overlay" onClick={cartView}></div>
+      <div className="overlay" onClick={hideCart}></div>
     </div>
   );
 };

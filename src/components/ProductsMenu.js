@@ -5,10 +5,10 @@ const ProductsMenu = ({ productData, setSelectedProducts }) => {
     if (e.target.textContent === "All") setSelectedProducts(productData);
     // make sure list item is clicked, not just parent ul element
     else if (e.target.nodeName === "LI") {
-      const filteredData = productData.filter(
+      const selectedProducts = productData.filter(
         (product) => product.category === e.target.textContent.toLowerCase()
       );
-      setSelectedProducts(filteredData);
+      setSelectedProducts(selectedProducts);
     }
   };
 

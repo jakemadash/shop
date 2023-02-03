@@ -60,13 +60,10 @@ const App = () => {
 
   const addToCart = (title, price, image, quantity) => {
     let productInCart = "";
-    console.log(quantity)
     let updatedProducts = cartProducts.map((product) => {
       if (product.title === title) {
-        if (isNaN(quantity)) console.log('ok');
         // product in cart, just change quantity
         productInCart = true;
-        console.log(quantity)
         return { ...product, quantity: product.quantity + quantity };
       } else return product;
     });
@@ -111,7 +108,7 @@ const App = () => {
       <Cart
         items={cartProducts}
         total={orderTotal}
-        addToCart={addToCart}
+        updateCart={addToCart}
         deleteFromCart={deleteFromCart}
       />
       <div className="products">

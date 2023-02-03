@@ -1,7 +1,7 @@
 import React from "react";
 import Trash from "../images/trash.svg";
 
-const Cart = ({ items, total, addToCart, deleteFromCart }) => {
+const Cart = ({ items, total, updateCart, deleteFromCart }) => {
   const closeCart = () => {
     document.querySelector(".cart").classList.toggle("slide-in");
     document.querySelector(".overlay").classList.toggle("visible");
@@ -9,19 +9,11 @@ const Cart = ({ items, total, addToCart, deleteFromCart }) => {
   };
 
   const handleChange = (e, item) => {
-    // if (isNaN(e.target.value) || e.target.value === '') {
-    //   console.log(e.target.value);
-    //   addToCart(item.title, item.price, item.image, 0);
-    // }
-    console.log(e)
-    e.preventDefault()
     if (parseInt(e.target.value) === 0 || e.target.className === "trash")
       deleteFromCart(item.title, item.price, item.quantity);
     else {
-      console.log(e.target.value === '');
-      console.log(e.target.value)
       const quantityChange = parseInt(e.target.value) - item.quantity;
-      addToCart(item.title, item.price, item.image, quantityChange);
+      updateCart(item.title, item.price, item.image, quantityChange);
     }
   };
 

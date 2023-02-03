@@ -11,8 +11,7 @@ const ProductCard = ({ item, updateCart }) => {
   });
 
   const handleChange = (e) => {
-    console.log(e.target.value)
-    if (e.target.value === '') setQuantity(null)
+    if (e.target.value === "") setQuantity(null);
     else setQuantity(parseInt(e.target.value));
   };
 
@@ -25,12 +24,15 @@ const ProductCard = ({ item, updateCart }) => {
       <img src={item.image} alt={item.title}></img>
       <div className="title">{item.title}</div>
       <div className="price">{usd.format(item.price)}</div>
-      <input
-        type="number"
-        defaultValue={1}
-        min={1}
-        onChange={handleChange}
-      ></input>
+      <label for="">
+        <input
+          type="number"
+          id={item.title}
+          defaultValue={1}
+          min={1}
+          onChange={handleChange}
+        ></input>
+      </label>
       <button onClick={handleClick}>Add to cart</button>
     </div>
   );
