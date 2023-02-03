@@ -14,8 +14,8 @@ const Header = ({ cartCount }) => {
           Pop Shop
         </a>
         <nav className="main-menu">
-          <a href="/" className="menu-item">Home</a>
-          <a href="/products" className="menu-item">Products</a>
+          <a href="#/" className="menu-item">Home</a>
+          <a href="#/products" className="menu-item">Products</a>
           <CartIcon count={cartCount} />
         </nav>
       </header>

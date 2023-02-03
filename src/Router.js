@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import App from "./components/App";
 import Home from "./components/Home";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index path="/" element={<Home />} />
         <Route path="/products" element={<App />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
