@@ -33,7 +33,7 @@ const App = () => {
     setProducts([
       data.map((product, index) => {
         return (
-          <div key={index}>
+          <div key={index} aria-label="product">
             <ProductCard item={product} updateCart={addToCart} />
           </div>
         );
@@ -49,7 +49,7 @@ const App = () => {
       setProducts([
         selectedProducts.map((product, index) => {
           return (
-            <div key={index}>
+            <div key={index} aria-label="product">
               <ProductCard item={product} updateCart={addToCart} />
             </div>
           );
@@ -84,13 +84,13 @@ const App = () => {
     );
     setCartProducts(updatedProducts);
     setCartCount(cartCount - quantity);
-    setOrderTotal(orderTotal - (price * quantity));
+    setOrderTotal(orderTotal - price * quantity);
   };
 
   let productView = "";
   if (isLoading)
     productView = (
-      <div className="loading">
+      <div className="loading" aria-label="loading">
         <RotatingLines
           strokeColor="rgb(77, 78, 146)"
           strokeWidth="5"
@@ -100,10 +100,15 @@ const App = () => {
         />
       </div>
     );
-  else productView = <div className="product-gallery">{products}</div>;
+  else
+    productView = (
+      <div className="product-gallery" aria-label="product-gallery">
+        {products}
+      </div>
+    );
 
   return (
-    <div className="App">
+    <div className="App" aria-label="App">
       <Header cartCount={cartCount} />
       <Cart
         items={cartProducts}

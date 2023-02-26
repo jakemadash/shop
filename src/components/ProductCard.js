@@ -20,7 +20,7 @@ const ProductCard = ({ item, updateCart }) => {
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card" aria-label={item.title}>
       <img src={item.image} alt={item.title}></img>
       <div className="title">{item.title}</div>
       <div className="price">{usd.format(item.price)}</div>

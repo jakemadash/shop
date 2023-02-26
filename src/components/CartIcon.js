@@ -11,7 +11,9 @@ const CartIcon = ({ count }) => {
   if (count > 0) quantity = count;
   return (
     <div className="menu-cart menu-item" onClick={cartView}>
-      <span className="quantity">{quantity}</span>
+      <span className="quantity" aria-label="quantity">
+        {quantity}
+      </span>
       <img src={Bag} alt="shopping bag" className="cart-icon"></img>
     </div>
   );

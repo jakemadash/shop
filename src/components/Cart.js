@@ -27,18 +27,21 @@ const Cart = ({ items, total, updateCart, deleteFromCart }) => {
   if (total > 0) orderTotal = usd.format(total);
 
   return (
-    <div className="cart invisible">
+    <div className="cart">
       <h1>Your Shopping Cart</h1>
-      <div className="cart-items-container">
+      <div className="cart-items-container" aria-label="cart">
         {items.map((item, index) => {
           return (
-            <div key={index} className="cart-item">
+            <div key={index} className="cart-item" aria-label="cart-item">
               <img
                 src={item.image}
                 alt={item.title}
                 className="cart-image"
               ></img>
-              <div className="cart-item-details">
+              <div
+                className="cart-item-details"
+                aria-label={usd.format(item.price)}
+              >
                 <div className="title">{item.title}</div>
                 <div className="price">{usd.format(item.price)}</div>
                 <div className="cart-item-controls">
@@ -60,9 +63,11 @@ const Cart = ({ items, total, updateCart, deleteFromCart }) => {
           );
         })}
       </div>
-      <div className="total">Total: {orderTotal}</div>
+      <div className="total" aria-label="total">
+        Total: {orderTotal}
+      </div>
       <button>Checkout</button>
-      <button className="close-button" onClick={closeCart}>
+      <button className="close-button" onClick={closeCart} aria-label="close">
         Close
       </button>
     </div>
