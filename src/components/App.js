@@ -4,7 +4,9 @@ import Header from "./Header";
 import ProductCard from "./ProductCard";
 import Cart from "./Cart";
 import ProductsMenu from "./ProductsMenu";
-import { RotatingLines } from "react-loader-spinner";
+import Products from "./Products";
+import WithLoading from "./WithLoading";
+const ProductsWithLoading = WithLoading(Products);
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -87,26 +89,6 @@ const App = () => {
     setOrderTotal(orderTotal - price * quantity);
   };
 
-  let productView = "";
-  if (isLoading)
-    productView = (
-      <div className="loading" aria-label="loading">
-        <RotatingLines
-          strokeColor="rgb(77, 78, 146)"
-          strokeWidth="5"
-          animationDuration="0.75"
-          width="96"
-          visible={true}
-        />
-      </div>
-    );
-  else
-    productView = (
-      <div className="product-gallery" aria-label="product-gallery">
-        {products}
-      </div>
-    );
-
   return (
     <div className="App" aria-label="App">
       <Header cartCount={cartCount} />
@@ -121,7 +103,7 @@ const App = () => {
           productData={allProducts}
           setSelectedProducts={setSelectedProducts}
         />
-        {productView}
+        <ProductsWithLoading isLoading={isLoading} products={products} />
       </div>
     </div>
   );
