@@ -17,7 +17,7 @@ const Header = ({ cartCount }) => {
           <a href="#/" className="menu-item">
             Home
           </a>
-          <a href="#/products" className="menu-item">
+          <a href="#/dashboard" className="menu-item">
             Products
           </a>
           <CartIcon count={cartCount} />

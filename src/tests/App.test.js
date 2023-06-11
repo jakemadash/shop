@@ -2,8 +2,8 @@ import React from "react";
 import { render, screen, within } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
-import App from "../components/App";
-import Home from "../components/Home";
+import Dashboard from "../views/Dashboard";
+import Home from "../views/Home";
 import { Routes, Route, HashRouter } from "react-router-dom";
 
 const mockApp = () => {
@@ -17,14 +17,14 @@ const mockApp = () => {
         ]),
     })
   );
-  render(<App />);
+  render(<Dashboard />);
 };
 
-describe("App component", () => {
+describe("Dashboard view", () => {
   it("displays error message if API response not okay", async () => {
     const response = new Response(null, { status: 404 });
     global.fetch = jest.fn(() => Promise.resolve(response));
-    await render(<App />);
+    await render(<Dashboard />);
     expect(screen.getByRole("generic", { name: "App" }).textContent).toMatch(
       "An error occurred. Please refresh the page or try again later."
     );
@@ -46,38 +46,40 @@ describe("App component", () => {
     expect(screen.queryByRole("generic", { name: "loading" })).toBeNull();
   });
 
-  it('routes to correct URLs when corresponding buttons/links clicked', async () => {
+  it("routes to correct URLs when corresponding buttons/links clicked", async () => {
     global.fetch = jest.fn(() =>
-    Promise.resolve({
-      ok: true,
-      json: () =>
-        Promise.resolve([
-          { price: 109.95, title: "backpack", category: "men's clothing" },
-          { price: 22.3, title: "shirt", category: "women's clothing" },
-        ]),
-    })
-  );
+      Promise.resolve({
+        ok: true,
+        json: () =>
+          Promise.resolve([
+            { price: 109.95, title: "backpack", category: "men's clothing" },
+            { price: 22.3, title: "shirt", category: "women's clothing" },
+          ]),
+      })
+    );
 
-  render(<HashRouter>
-    <Routes>
-      <Route index path="/" element={<Home />} />
-      <Route path="/products" element={<App />} />
-    </Routes>
-  </HashRouter>);
+    render(
+      <HashRouter>
+        <Routes>
+          <Route index path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </HashRouter>
+    );
 
-    userEvent.click(screen.getByText('Shop now')) 
-    expect(await screen.findByText('Electronics')).toBeInTheDocument() // shop page
+    userEvent.click(screen.getByText("Shop now"));
+    expect(await screen.findByText("Electronics")).toBeInTheDocument(); // shop page
 
-    userEvent.click(screen.getByText('Home')) // first path to home page
-    expect(await screen.findByText('Shop now')).toBeInTheDocument()  
+    userEvent.click(screen.getByText("Home")); // first path to home page
+    expect(await screen.findByText("Shop now")).toBeInTheDocument();
 
-    userEvent.click(screen.getByText('Shop now')) 
-    expect(await screen.findByText('Electronics')).toBeInTheDocument() 
+    userEvent.click(screen.getByText("Shop now"));
+    expect(await screen.findByText("Electronics")).toBeInTheDocument();
 
-    userEvent.click(screen.getByText('Pop Shop')) // second path to home page
-    expect(await screen.findByText('Shop now')).toBeInTheDocument()   
-  })
- 
+    userEvent.click(screen.getByText("Pop Shop")); // second path to home page
+    expect(await screen.findByText("Shop now")).toBeInTheDocument();
+  });
+
   it("adds distinct products to cart that match product card", async () => {
     mockApp();
     const backpack = await screen.findByRole("generic", { name: "backpack" });
@@ -175,6 +177,6 @@ describe("App component", () => {
     displayedProducts = await screen.findAllByRole("generic", {
       name: "product",
     });
-    expect(displayedProducts).toHaveLength(2); 
+    expect(displayedProducts).toHaveLength(2);
   });
 });

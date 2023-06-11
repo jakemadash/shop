@@ -1,13 +1,13 @@
 import { Routes, Route, HashRouter } from "react-router-dom";
-import App from "./components/App";
-import Home from "./components/Home";
+import Dashboard from "./views/Dashboard";
+import Home from "./views/Home";
 
 const Router = () => {
   return (
     <HashRouter>
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route path="/products" element={<App />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </HashRouter>
   );

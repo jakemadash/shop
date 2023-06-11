@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from "react";
-import Header from "./Header";
-import ProductCard from "./ProductCard";
-import Cart from "./Cart";
-import ProductsMenu from "./ProductsMenu";
-import Products from "./Products";
-import WithLoading from "./WithLoading";
+import Header from "../components/Header";
+import ProductCard from "../components/ProductCard";
+import Cart from "../components/Cart";
+import ProductsMenu from "../components/ProductsMenu";
+import Products from "../components/Products";
+import WithLoading from "../components/WithLoading";
 const ProductsWithLoading = WithLoading(Products);
 
-const App = () => {
+const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [allProducts, setAllProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -109,4 +109,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Dashboard;
